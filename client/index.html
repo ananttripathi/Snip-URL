@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snip - URL Shortener</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>✂️ Snip</h1>
+            <p>Shorten your links, expand your reach.</p>
+        </header>
+
+        <main>
+            <div class="glass-card">
+                <form id="shortenForm">
+                    <div class="input-group">
+                        <label for="originalUrl">Long URL</label>
+                        <input type="url" id="originalUrl" placeholder="https://example.com/very-long-url" required>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-group">
+                            <label for="customAlias">Custom Alias (Optional)</label>
+                            <input type="text" id="customAlias" placeholder="my-link">
+                        </div>
+                        <div class="input-group">
+                            <label for="expiresAt">Expires At (Optional)</label>
+                            <input type="date" id="expiresAt">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submitBtn">Snip It! ✂️</button>
+                </form>
+
+                <div id="result" class="result-container hidden">
+                    <p>Your simplified link:</p>
+                    <div class="short-url-box">
+                        <a href="#" id="shortLink" target="_blank">...</a>
+                        <button id="copyBtn" aria-label="Copy to clipboard">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="error" class="error-message hidden"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Built with ❤️ using Node.js & PostgreSQL</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
