@@ -7,7 +7,7 @@ A fast, lightweight URL shortener with click analytics, custom aliases, and link
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue?style=flat-square&logo=postgresql)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
 ![Hosted on Vercel](https://img.shields.io/badge/Frontend-Vercel-black?style=flat-square&logo=vercel)
-![Hosted on Render](https://img.shields.io/badge/Backend-Render-46E3B7?style=flat-square&logo=render)
+![Hosted on HuggingFace](https://img.shields.io/badge/Backend-HuggingFace_Spaces-FFD21E?style=flat-square&logo=huggingface&logoColor=black)
 ![DB on Neon](https://img.shields.io/badge/Database-Neon-00E5B0?style=flat-square)
 
 ---
@@ -27,7 +27,7 @@ A fast, lightweight URL shortener with click analytics, custom aliases, and link
 | Layer | Technology | Hosted On |
 |-------|-----------|-----------|
 | Frontend | HTML, CSS, JavaScript | [Vercel](https://vercel.com) (free) |
-| Backend | Node.js + Express | [Render](https://render.com) (free) |
+| Backend | Node.js + Express | [Hugging Face Spaces](https://huggingface.co/spaces) (free) |
 | Database | PostgreSQL | [Neon](https://neon.tech) (free) |
 
 ---
@@ -119,18 +119,19 @@ This project is optimized for a 100% free stack. Here is the exact mapping:
 - **Action:** Copy the content of `server/db/schema.sql` and run it in the [Neon](https://neon.tech) SQL Editor to create your table.
 - **Result:** You get a `DATABASE_URL` (connection string).
 
-### 2. Backend (Render.com)
-**Files Used:** `server/`, `package.json`
-- **Action:** Connect your GitHub repo to [Render](https://render.com) as a "Web Service".
-- **Environment Variables:**
-    - `DATABASE_URL`: Your Neon connection string.
-    - `CORS_ORIGIN`: Your Frontend URL (e.g., `https://snip.vercel.app` - add this after deploying frontend).
-- **Result:** You get a Backend URL (e.g., `https://snip.onrender.com`).
+### 2. Backend (Hugging Face Spaces)
+**Files Used:** `server/`, `Dockerfile`, `package.json`
+- **Action:** Create a new Space on [Hugging Face](https://huggingface.co/spaces) with **Docker** SDK. The GitHub Action (`.github/workflows/deploy-hf.yml`) auto-deploys on every push to `main`.
+- **Environment Variables (add as Secrets/Variables in Space settings):**
+    - `DATABASE_URL`: Your Neon connection string (secret).
+    - `BASE_URL`: Your HF Space URL (e.g., `https://username-snip-url-backend.hf.space`).
+    - `CORS_ORIGIN`: Your Frontend URL (e.g., `https://snip.vercel.app`).
+- **Result:** You get a Backend URL (e.g., `https://username-snip-url-backend.hf.space`).
 
 ### 3. Frontend (Vercel)
 **Files Used:** `client/`
 - **Action:**
-    1. Update `client/app.js`: Set `const API_BASE_URL` to your new Render Backend URL.
+    1. Update `client/app.js`: Set `const API_BASE_URL` to your Hugging Face Space backend URL.
     2. Deploy the `client` folder to [Vercel](https://vercel.com).
 - **Result:** You get a live Frontend URL.
 
