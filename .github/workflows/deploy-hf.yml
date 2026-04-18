@@ -24,4 +24,5 @@ jobs:
           git config user.name "ananttripathiak"
           git add .
           git commit -m "Deploy to HF Spaces"
+          git branch -m master main
           git push https://ananttripathiak:$HF_TOKEN@huggingface.co/spaces/ananttripathiak/snip-url-backend main --force
