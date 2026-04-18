@@ -12,7 +12,11 @@ A fast, lightweight URL shortener with click analytics, custom aliases, and link
 
 ---
 
-## 📸 Demo
+## 🚀 Live Demo
+
+🔗 [snip-url-alpha.vercel.app](https://snip-url-alpha.vercel.app)
+
+## 📸 Preview
 
 ![UI Preview](assets/preview.webp)
 
