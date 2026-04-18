@@ -12,17 +12,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install huggingface_hub
+        run: pip install huggingface_hub
+
       - name: Push to Hugging Face
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           mkdir hf-deploy
           cp -r server client Dockerfile package.json hf-deploy/
-          cd hf-deploy
-          git init
-          git config user.email "ananttripathi1996@gmail.com"
-          git config user.name "ananttripathiak"
-          cat > README.md << 'EOF'
+          cat > hf-deploy/README.md << 'EOF'
 ---
 title: Snip URL Backend
 emoji: ✂️
@@ -32,7 +31,15 @@ sdk: docker
 pinned: false
 ---
 EOF
-          git add .
-          git commit -m "Deploy to HF Spaces"
-          git branch -m master main
-          git push https://ananttripathiak:$HF_TOKEN@huggingface.co/spaces/ananttripathiak/snip-url-backend main --force
+          python - << 'PYEOF'
+import os
+from huggingface_hub import HfApi
+
+api = HfApi(token=os.environ["HF_TOKEN"])
+api.upload_folder(
+    folder_path="hf-deploy",
+    repo_id="ananttripathiak/snip-url-backend",
+    repo_type="space",
+)
+print("Upload complete!")
+PYEOF
