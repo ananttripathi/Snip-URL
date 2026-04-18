@@ -7,7 +7,7 @@ const submitBtn = document.getElementById('submitBtn');
 
 // ⚠️ CHANGE THIS TO YOUR RENDER URL AFTER DEPLOYING BACKEND
 // Example: const API_BASE_URL = "https://snip-backend.onrender.com";
-const API_BASE_URL = "";
+const API_BASE_URL = "https://ananttripathiak-snip-url-backend.hf.space";
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
