@@ -16,6 +16,12 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
+          mkdir hf-deploy
+          cp -r server client Dockerfile package.json hf-deploy/
+          cd hf-deploy
+          git init
           git config user.email "ananttripathi1996@gmail.com"
-          git config user.name "ananttripathi"
+          git config user.name "ananttripathiak"
+          git add .
+          git commit -m "Deploy to HF Spaces"
           git push https://ananttripathiak:$HF_TOKEN@huggingface.co/spaces/ananttripathiak/snip-url-backend main --force
